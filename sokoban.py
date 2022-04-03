@@ -56,7 +56,12 @@ class Sokoban:
             print(mapa[j][i], end=" ")
       print()
     print() #Imprime una linea vacia   
-  
+  def findCharacterPosition(self):
+    mapa = np.loadtxt('prueba.txt',dtype=int)
+    mapa = np.array(mapa)
+    result = np.where(mapa == 0)
+    muneco_fila=result[0]
+    muneco_columna=result[1]
 
 
 
