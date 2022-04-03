@@ -16,18 +16,15 @@ Grupo: TI22
       h-Abajo\
       q-Salir
 """
+import  numpy as np
 class Sokoban:
   def __init__(self):
         """_summary_: Constructor"""
         pass
   def loadMapa(self):
-    archivo = open("level0.txt","r")
+    self.mapa = np.loadtxt('level0.txt', dtype=int)
+     
+  
+
+
     
-  mapa = archivo   
-  def printMap(self):
-        """_summary_: Print the map"""
-        # TODO: Print the map
-        for row in archivo:  # For each row in map
-            print(row)  # Print the row
-juego = Sokoban()#Crea un objeto para jugar
-juego.imprimirMapa()#Imprime el mapa
