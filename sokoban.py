@@ -24,7 +24,40 @@ class Sokoban:
   def loadMapa(self):
     self.mapa = np.loadtxt('level0.txt', dtype=int)
      
+  def printMap(self):
+    """_summary_: Print the map"""
+    mapa = np.loadtxt('level0.txt', dtype=int)
+    for j in range(7):
+      for i in range(11):
+        if mapa[j][i] == 0:
+            #Si encuentra un numero 1 -  espacio
+            #for a in range(len(self.mapa[0])):
+            print("🤖", end = "")#Cambiar un 1 por un ""
+        elif mapa[j][i] == 1:
+            #Si encuentra un numero 1 -  espacio
+            #for a in range(len(self.mapa[0])):
+            print("  ", end = "")#Cambiar un 1 por un ""
+        elif mapa[j][i] == 2: #3-pared
+            #for a in range(len(self.mapa)):
+            print("🧰", end = "")#Cambia un 3 por un simbolo  
+        elif mapa[j][i] == 3: #3-pared
+            #for a in range(len(self.mapa)):
+            print("🔳", end = "")#Cambia un 3 por un simbolo
+        elif mapa[j][i] == 4: #3-pared
+            #for a in range(len(self.mapa)):
+            print("⛳", end = "")#Cambia un 3 por un simbolo  
+        elif mapa[j][i] == 5: #3-pared
+            #for a in range(len(self.mapa)):
+            print("🎖", end = "")#Cambia un 3 por un simbolo
+        elif mapa[j][i] == 6: #3-pared
+            #for a in range(len(self.mapa)):
+            print("🏆", end = "")#Cambia un 3 por un simbolo       
+        else:
+            print(mapa[j][i], end=" ")
+      print()
+    print() #Imprime una linea vacia   
   
+
 
 
     
