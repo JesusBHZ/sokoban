@@ -16,6 +16,9 @@ Grupo: TI22
       h-Abajo\
       q-Salir
 """
+import platform
+import os
+import time
 import  numpy as np
 class Sokoban:
   mapa = np.loadtxt('level0.txt',dtype=int)
@@ -66,6 +69,12 @@ class Sokoban:
     result = np.where(mapa == 0)
     muneco_fila=result[0]
     muneco_columna=result[1]
+
+  def limpiar_pantalla(self):
+    if platform.system()=='Windows':
+      os.system('cls')
+    else:
+      os.system('clear')
     
   def moverDerecha(self):
     #5.- Personaje, espacio 
@@ -410,12 +419,16 @@ while True:#Bucle para jugar N veces
   movimientos = input("mover a: ")#Lee el movimiento
   if movimientos == 'd':#si es d - mover a la derecha
     juego.moverDerecha()#mueve el muñeco  a la derecha
+    juego.limpiar_pantalla()
   elif movimientos == 'i': #si es a - mover a la izquierda
     juego.moverIzquierda()#mueve el muñeco  a la izquierda
+    juego.limpiar_pantalla()
   elif movimientos == 'r': #si es r - mover a arriba
     juego.moverArriba()#mueve el muñeco  a arriba
+    juego.limpiar_pantalla()
   elif movimientos == 'a': #si es l - mover a abajo
     juego.moverAbajo()#mueve el muñeco  a abajo
+    juego.limpiar_pantalla()
   elif movimientos == "q":#si es q-salir
     print("Saliste del juego")#Imprmir mensaje
     break #Rompe el ciclo while
