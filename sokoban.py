@@ -55,8 +55,16 @@ class Sokoban:
       
     self.mapa = np.array(texto).reshape(self.filas,self.columnas)
 
+
+  def findPosition(self):
+    result = np.where(self.mapa == 0)
+    map = self.mapa
+    self.muneco_fila=result[0]
+    self.muneco_columna=result[1]
+
    
 juego = Sokoban()#Crea un objeto para jugar
 juego.loadFile()
 juego.findColumnasFilas()
 juego.convertirFile()
+juego.findPosition()
