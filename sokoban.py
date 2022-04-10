@@ -24,7 +24,7 @@ class Sokoban:
   columnas = 0
   filas = 0
   mapa = []
-  nivel = 'level0.txt'
+  nivel = 'level1.txt'
 
   def __init__(self):
         """_summary_: Constructor"""
@@ -241,7 +241,98 @@ class Sokoban:
       self.mapa[self.muneco_fila,self.muneco_columna-2]=6
       self.muneco_columna-=1
 
-   
+
+  def moverArriba(self):
+    #29.- Espacio
+        #Personaje 
+    if self.mapa[self.muneco_fila,self.muneco_columna]== 0 and  self.mapa[self.muneco_fila-1,self.muneco_columna]==1:
+      self.mapa[self.muneco_fila,self.muneco_columna]=1
+      self.mapa[self.muneco_fila-1,self.muneco_columna]=0
+      self.muneco_fila-=1
+    #30.- Meta
+        #Personaje 
+    elif self.mapa[self.muneco_fila,self.muneco_columna]== 0 and  self.mapa[self.muneco_fila-1,self.muneco_columna]==4:
+      self.mapa[self.muneco_fila,self.muneco_columna]=1
+      self.mapa[self.muneco_fila-1,self.muneco_columna]=5
+      self.muneco_fila-=1
+    #31.- Espacio
+        #Caja
+        #Personaje
+    elif self.mapa[self.muneco_fila,self.muneco_columna]== 0 and  self.mapa[self.muneco_fila-1,self.muneco_columna]==2 and  self.mapa[self.muneco_fila-2,self.muneco_columna]==1:
+      self.mapa[self.muneco_fila,self.muneco_columna]=1
+      self.mapa[self.muneco_fila-1,self.muneco_columna]=0
+      self.mapa[self.muneco_fila-2,self.muneco_columna]=2
+      self.muneco_fila-=1
+    #32.- Meta
+        #Caja
+        #Personaje
+    elif self.mapa[self.muneco_fila,self.muneco_columna]== 0 and  self.mapa[self.muneco_fila-1,self.muneco_columna]==2 and  self.mapa[self.muneco_fila-2,self.muneco_columna]==4:
+      self.mapa[self.muneco_fila,self.muneco_columna]=1
+      self.mapa[self.muneco_fila-1,self.muneco_columna]=0
+      self.mapa[self.muneco_fila-2,self.muneco_columna]=6
+      self.muneco_fila-=1
+    #33.- Espacio
+        #Caja_meta
+        #Personaje
+    elif self.mapa[self.muneco_fila,self.muneco_columna]== 0 and  self.mapa[self.muneco_fila-1,self.muneco_columna]==6 and  self.mapa[self.muneco_fila-2,self.muneco_columna]==1:
+      self.mapa[self.muneco_fila,self.muneco_columna]=1
+      self.mapa[self.muneco_fila-1,self.muneco_columna]=5
+      self.mapa[self.muneco_fila-2,self.muneco_columna]=2
+      self.muneco_fila-=1
+    #34.- Meta
+        #Caja_meta
+        #Personaje
+    elif self.mapa[self.muneco_fila,self.muneco_columna]== 0 and  self.mapa[self.muneco_fila-1,self.muneco_columna]==6 and  self.mapa[self.muneco_fila-2,self.muneco_columna]==4:
+      self.mapa[self.muneco_fila,self.muneco_columna]=1
+      self.mapa[self.muneco_fila-1,self.muneco_columna]=5
+      self.mapa[self.muneco_fila-2,self.muneco_columna]=6
+      self.muneco_fila-=1
+    #35.- Espacio
+        #Personaje_meta
+    if self.mapa[self.muneco_fila,self.muneco_columna]== 5 and  self.mapa[self.muneco_fila-1,self.muneco_columna]==1:
+      self.mapa[self.muneco_fila,self.muneco_columna]=4
+      self.mapa[self.muneco_fila-1,self.muneco_columna]=0
+      self.muneco_fila-=1
+   #36.- Meta
+        #Personaje_meta
+    if self.mapa[self.muneco_fila,self.muneco_columna]== 5 and  self.mapa[self.muneco_fila-1,self.muneco_columna]==4:
+      self.mapa[self.muneco_fila,self.muneco_columna]=4
+      self.mapa[self.muneco_fila-1,self.muneco_columna]=5
+      self.muneco_fila-=1
+    #37.- Espacio
+        #Caja
+        #Personaje_meta
+    elif self.mapa[self.muneco_fila,self.muneco_columna]== 5 and  self.mapa[self.muneco_fila-1,self.muneco_columna]==2 and  self.mapa[self.muneco_fila-2,self.muneco_columna]==1:
+      self.mapa[self.muneco_fila,self.muneco_columna]=4
+      self.mapa[self.muneco_fila-1,self.muneco_columna]=0
+      self.mapa[self.muneco_fila-2,self.muneco_columna]=2
+      self.muneco_fila-=1
+    #38.- Meta
+        #Caja
+        #Personaje_meta
+    elif self.mapa[self.muneco_fila,self.muneco_columna]== 5 and  self.mapa[self.muneco_fila-1,self.muneco_columna]==2 and  self.mapa[self.muneco_fila-2,self.muneco_columna]==4:
+      self.mapa[self.muneco_fila,self.muneco_columna]=4
+      self.mapa[self.muneco_fila-1,self.muneco_columna]=0
+      self.mapa[self.muneco_fila-2,self.muneco_columna]=6
+      self.muneco_fila-=1     
+    #39.- Espacio
+        #Caja_meta
+        #Personaje_meta
+    elif self.mapa[self.muneco_fila,self.muneco_columna]== 5 and  self.mapa[self.muneco_fila-1,self.muneco_columna]==6 and  self.mapa[self.muneco_fila-2,self.muneco_columna]==1:
+      self.mapa[self.muneco_fila,self.muneco_columna]=4
+      self.mapa[self.muneco_fila-1,self.muneco_columna]=5
+      self.mapa[self.muneco_fila-2,self.muneco_columna]=2
+      self.muneco_fila-=1         
+    #40.- Meta
+        #Caja_meta
+        #Personaje_meta
+    elif self.mapa[self.muneco_fila,self.muneco_columna]== 5 and  self.mapa[self.muneco_fila-1,self.muneco_columna]==6 and  self.mapa[self.muneco_fila-2,self.muneco_columna]==4:
+      self.mapa[self.muneco_fila,self.muneco_columna]=4
+      self.mapa[self.muneco_fila-1,self.muneco_columna]=5
+      self.mapa[self.muneco_fila-2,self.muneco_columna]=6
+      self.muneco_fila-=1         
+        
+
 juego = Sokoban()#Crea un objeto para jugar
 juego.loadFile()
 juego.findColumnasFilas()
