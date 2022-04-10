@@ -42,7 +42,21 @@ class Sokoban:
     fichero.readline()
     fichero.seek(0)
     self.filas = len(fichero.readlines())
+  
+  def convertirFile(self):
+  # Cargar Archivo
+    self.archivo = open(self.nivel, 'r')
+    self.hola = self.archivo.read()
+    texto=[]
+    for i in self.hola:
+      texto+=i.rstrip()
+    for k in range(len(texto)):
+      texto[k] = int(texto[k])
+      
+    self.mapa = np.array(texto).reshape(self.filas,self.columnas)
+
    
 juego = Sokoban()#Crea un objeto para jugar
 juego.loadFile()
 juego.findColumnasFilas()
+juego.convertirFile()
