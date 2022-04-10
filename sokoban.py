@@ -25,6 +25,7 @@ class Sokoban:
   filas = 0
   mapa = []
   nivel = 'level1.txt'
+  complet = False
 
   def __init__(self):
         """_summary_: Constructor"""
@@ -441,7 +442,13 @@ class Sokoban:
       intrucciones = " d - Derecha\n i - Izquierda\n r - Arriba\n a - Abajo\n q - Salir" #Instrucciones
       print(intrucciones)
       print()
-      juego.printMap()#Imprime el mapa
+      
+      if self.complet == True:
+        print("Level Complete")  # Print the level complete
+        input("Press Enter to continue...")  # Wait for the user to press enter
+        
+      self.printMap()
+      print(self.complet)
       movimientos = input(" Mover a: ")#Lee el movimiento
       if movimientos == 'd':#si es d - mover a la derecha
         juego.moverDerecha()#mueve el muñeco  a la derecha
