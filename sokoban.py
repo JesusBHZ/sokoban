@@ -24,7 +24,7 @@ class Sokoban:
   columnas = 0
   filas = 0
   mapa = []
-  nivel = 'level1.txt'
+  nivel = 'level0.txt'
   complet = False
 
   def __init__(self):
@@ -439,16 +439,26 @@ class Sokoban:
     self.convertirFile()
     self.findPosition()
     while True:#Bucle para jugar N veces
+      print()
+      print(" ---- Nivel Actual: "+self.nivel+" ----")
+      print()
       intrucciones = " d - Derecha\n i - Izquierda\n r - Arriba\n a - Abajo\n q - Salir" #Instrucciones
       print(intrucciones)
       print()
-      
+
+      level = 1
       if self.complet == True:
         print("Level Complete")  # Print the level complete
-        input("Press Enter to continue...")  # Wait for the user to press enter
+        input("Press Enter to continue...")   
+        nivel_nuevo = 'level1.txt'
+        self.nivel = nivel_nuevo
+        self.loadFile()
+        self.findColumnasFilas()
+        self.convertirFile()
+        self.findPosition()
+        level+=1
         
       self.printMap()
-      print(self.complet)
       movimientos = input(" Mover a: ")#Lee el movimiento
       if movimientos == 'd':#si es d - mover a la derecha
         juego.moverDerecha()#mueve el muñeco  a la derecha
