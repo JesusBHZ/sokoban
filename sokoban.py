@@ -35,6 +35,14 @@ class Sokoban:
     with open(self.nivel) as f:
       colum = f.readline().rstrip()
     self.columnas = len(colum)
-
+   
+  def findColumnasFilas(self):
+    # Filas
+    fichero = open(self.nivel, 'r') 
+    fichero.readline()
+    fichero.seek(0)
+    self.filas = len(fichero.readlines())
+   
 juego = Sokoban()#Crea un objeto para jugar
 juego.loadFile()
+juego.findColumnasFilas()
