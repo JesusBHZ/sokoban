@@ -93,6 +93,12 @@ class Sokoban:
             print(self.mapa[j][i], end=" ")
       print()
     print() #Imprime una linea vacia 
+    
+  def limpiar_pantalla(self):
+    if platform.system()=='Windows':
+      os.system('cls')
+    else:
+      os.system('clear')
    
 juego = Sokoban()#Crea un objeto para jugar
 juego.loadFile()
@@ -100,3 +106,4 @@ juego.findColumnasFilas()
 juego.convertirFile()
 juego.findPosition()
 juego.printMap()
+juego.limpiar_pantalla
