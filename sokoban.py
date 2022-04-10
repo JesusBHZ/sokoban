@@ -24,7 +24,7 @@ class Sokoban:
   columnas = 0
   filas = 0
   mapa = []
-  nivel = 'level2.txt'
+  nivel = 'level0.txt'
 
   def __init__(self):
         """_summary_: Constructor"""
@@ -62,9 +62,41 @@ class Sokoban:
     self.muneco_fila=result[0]
     self.muneco_columna=result[1]
 
+  def printMap(self):
+    """_summary_: Print the map"""
+    for j in range(self.filas):
+      for i in range(self.columnas):
+        if self.mapa[j][i] == 0:
+            #Si encuentra un numero 1 -  espacio
+            #for a in range(len(self.mapa[0])):
+            print("🤖", end = "")#Cambiar un 1 por un ""
+        elif self.mapa[j][i] == 1:
+            #Si encuentra un numero 1 -  espacio
+            #for a in range(len(self.mapa[0])):
+            print("  ", end = "")#Cambiar un 1 por un ""
+        elif self.mapa[j][i] == 2: #3-pared
+            #for a in range(len(self.mapa)):
+            print("🧰", end = "")#Cambia un 3 por un simbolo  
+        elif self.mapa[j][i] == 3: #3-pared
+            #for a in range(len(self.mapa)):
+            print("🔳", end = "")#Cambia un 3 por un simbolo
+        elif self.mapa[j][i] == 4: #3-pared
+            #for a in range(len(self.mapa)):
+            print("⛳", end = "")#Cambia un 3 por un simbolo  
+        elif self.mapa[j][i] == 5: #3-pared
+            #for a in range(len(self.mapa)):
+            print("🔰", end = "")#Cambia un 3 por un simbolo
+        elif self.mapa[j][i] == 6: #3-pared
+            #for a in range(len(self.mapa)):
+            print("🏆", end = "")#Cambia un 3 por un simbolo       
+        else:
+            print(self.mapa[j][i], end=" ")
+      print()
+    print() #Imprime una linea vacia 
    
 juego = Sokoban()#Crea un objeto para jugar
 juego.loadFile()
 juego.findColumnasFilas()
 juego.convertirFile()
 juego.findPosition()
+juego.printMap()
