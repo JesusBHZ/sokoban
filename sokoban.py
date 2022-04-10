@@ -62,6 +62,7 @@ class Sokoban:
     self.muneco_columna=result[1]
 
   def printMap(self):
+    contador = 0
     """_summary_: Print the map"""
     for j in range(self.filas):
       for i in range(self.columnas):
@@ -75,6 +76,7 @@ class Sokoban:
           print("  ", end = "")#Cambiar un 1 por un ""
         elif self.mapa[j][i] == 2: #3-pared
             #for a in range(len(self.mapa)):
+          contador+=1
           print("🧰", end = "")#Cambia un 3 por un simbolo  
         elif self.mapa[j][i] == 3: #3-pared
             #for a in range(len(self.mapa)):
@@ -92,7 +94,13 @@ class Sokoban:
           print(self.mapa[j][i], end=" ")
       print()
     print() #Imprime una linea vacia 
+
+    if contador == 0:
+      self.complet = True
+    else: 
+      self.complet = False
     
+  
   def limpiar_pantalla(self):
     if platform.system()=='Windows':
       os.system('cls')
