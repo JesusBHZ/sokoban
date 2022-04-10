@@ -330,7 +330,7 @@ class Sokoban:
       self.mapa[self.muneco_fila,self.muneco_columna]=4
       self.mapa[self.muneco_fila-1,self.muneco_columna]=5
       self.mapa[self.muneco_fila-2,self.muneco_columna]=6
-      self.muneco_fila-=1         
+      self.muneco_fila-=1     
         
 
 juego = Sokoban()#Crea un objeto para jugar
