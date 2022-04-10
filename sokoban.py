@@ -423,33 +423,36 @@ class Sokoban:
       self.mapa[self.muneco_fila+1,self.muneco_columna]=5
       self.mapa[self.muneco_fila+2,self.muneco_columna]=6
       self.muneco_fila+=1
-            
+      
+    
+  def play(self):
+    self.loadFile()
+    self.findColumnasFilas()
+    self.convertirFile()
+    self.findPosition()
+    while True:#Bucle para jugar N veces
+      intrucciones = " d - Derecha\n i - Izquierda\n r - Arriba\n a - Abajo\n q - Salir" #Instrucciones
+      print(intrucciones)
+      print()
+      juego.printMap()#Imprime el mapa
+      movimientos = input(" Mover a: ")#Lee el movimiento
+      if movimientos == 'd':#si es d - mover a la derecha
+        juego.moverDerecha()#mueve el muñeco  a la derecha
+        juego.limpiar_pantalla()
+      elif movimientos == 'i': #si es a - mover a la izquierda
+        juego.moverIzquierda()#mueve el muñeco  a la izquierda
+        juego.limpiar_pantalla()
+      elif movimientos == 'r': #si es r - mover a arriba
+        juego.moverArriba()#mueve el muñeco  a arriba
+        juego.limpiar_pantalla()
+      elif movimientos == 'a': #si es l - mover a abajo
+        juego.moverAbajo()#mueve el muñeco  a abajo
+        juego.limpiar_pantalla()
+      elif movimientos == "q":#si es q-salir
+        print(" Saliste del juego")#Imprmir mensaje
+        break #Rompe el ciclo while
+    
+
 juego = Sokoban()#Crea un objeto para jugar
-juego.loadFile()
-juego.findColumnasFilas()
-juego.convertirFile()
-juego.findPosition()
-juego.limpiar_pantalla
 
-while True:#Bucle para jugar N veces
-  intrucciones = "d-Derecha\ni-Izquierda\nr-Arriba\na-Abajo\nq-Salir" #Instrucciones
-  print(intrucciones)
-  print()
-  juego.printMap()#Imprime el mapa
-  movimientos = input("mover a: ")#Lee el movimiento
-  if movimientos == 'd':#si es d - mover a la derecha
-    juego.moverDerecha()#mueve el muñeco  a la derecha
-    juego.limpiar_pantalla()
-  elif movimientos == 'i': #si es a - mover a la izquierda
-    juego.moverIzquierda()#mueve el muñeco  a la izquierda
-    juego.limpiar_pantalla()
-  elif movimientos == 'r': #si es r - mover a arriba
-    juego.moverArriba()#mueve el muñeco  a arriba
-    juego.limpiar_pantalla()
-  elif movimientos == 'a': #si es l - mover a abajo
-    juego.moverAbajo()#mueve el muñeco  a abajo
-    juego.limpiar_pantalla()
-  elif movimientos == "q":#si es q-salir
-    print("Saliste del juego")#Imprmir mensaje
-    break #Rompe el ciclo while
-
+juego.play()
