@@ -29,6 +29,7 @@ class Sokoban:
   mapa = []
   nivel = 'level0.txt'
   complet = False
+  level = 0
   
   # Metodo constructor 
   def __init__(self):
@@ -448,19 +449,16 @@ class Sokoban:
       intrucciones = " d - Derecha\n i - Izquierda\n r - Arriba\n a - Abajo\n q - Salir" #Instrucciones
       print(intrucciones)
       print()
-
-      level = 1
       if self.complet == True:
         print("Level Complete")  # Print the level complete
-        input("Press Enter to continue...")   
-        nivel_nuevo = 'level1.txt'
+        input("Press Enter to continue...")
+        self.level = self.level + 1
+        nivel_nuevo = 'level'+str(self.level)+'.txt'
         self.nivel = nivel_nuevo
         self.loadFile()
         self.findColumnasFilas()
         self.convertirFile()
         self.findPosition()
-        level+=1
-        
       self.printMap()
       movimientos = input(" Mover a: ") # Lee el movimiento
       if movimientos == 'd': # Si es d - mover a la derecha
