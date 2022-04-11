@@ -445,9 +445,10 @@ class Sokoban:
       intrucciones = " d - Derecha\n i - Izquierda\n r - Arriba\n a - Abajo\n q - Salir" #Instrucciones
       print(intrucciones)
       print()
-
-      level = 1
+      level=1
       if self.complet == True:
+        level+=1
+        if level == 1:
         print("Level Complete")  # Print the level complete
         input("Press Enter to continue...")   
         nivel_nuevo = 'level1.txt'
@@ -456,7 +457,6 @@ class Sokoban:
         self.findColumnasFilas()
         self.convertirFile()
         self.findPosition()
-        level+=1
         
       self.printMap()
       movimientos = input(" Mover a: ")#Lee el movimiento
