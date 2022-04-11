@@ -16,98 +16,100 @@ Grupo: TI22
       h-Abajo
       q-Salir
 """
+  # Librerias nesesarias para la funcion clear 
 import platform
 import os
+  # Libreria numpy que nos permite trabajar con arrays de manera mas sencilla
 import  numpy as np
 class Sokoban:
+  # Iniciacilizacion de variables usadas en las funciones siguientes 
   archivo = ""
   columnas = 0
   filas = 0
   mapa = []
   nivel = 'level0.txt'
   complet = False
-
+  
+  # Metodo constructor 
   def __init__(self):
         """_summary_: Constructor"""
         pass
     
+  # Metodo responsale de la carga del archivo de texto  
   def loadFile(self):
-    # Columnas
+    # Obtenemos el numero de columnas o el largo que tiene la primera fila de nuestro archivo
     with open(self.nivel) as f:
       colum = f.readline().rstrip()
     self.columnas = len(colum)
-   
+    
+  # Metodo encontrar filas, devuelve el numero de filas de nuestro archivo
   def findColumnasFilas(self):
-    # Filas
     fichero = open(self.nivel, 'r') 
     fichero.readline()
     fichero.seek(0)
     self.filas = len(fichero.readlines())
-  
+    
+  # Metodo convertirFile, este metodo convierte nuestro archivo.txt en un aray
   def convertirFile(self):
   # Cargar Archivo
     self.archivo = open(self.nivel, 'r')
     self.hola = self.archivo.read()
     texto=[]
+    # Obtenemos los valores del archivo y se los asignamos a la lista texto, asu ves que convertimos los valores a int
     for i in self.hola:
       texto+=i.rstrip()
     for k in range(len(texto)):
       texto[k] = int(texto[k])
-      
+    # Conversion de la variable texto a array con la funcion numpy, pasandole como limtes: filas, columnas  
     self.mapa = np.array(texto).reshape(self.filas,self.columnas)
 
-
+  # Metodo findPositon, devuelve la posicion de nuestro personaje en el mapa
   def findPosition(self):
     result = np.where(self.mapa == 0)
     self.muneco_fila=result[0]
     self.muneco_columna=result[1]
-
+    
+  # Metodo printMao, imprime el mapa segun las condiciones incicadas
   def printMap(self):
+    # Inicialisamos la variable contador, esta variable contara el numero de 2/cajas del mapa con el fin de ayudarnos a detectar si el nivel esta completado
     contador = 0
-    """_summary_: Print the map"""
     for j in range(self.filas):
       for i in range(self.columnas):
-        if self.mapa[j][i] == 0:
-            #Si encuentra un numero 1 -  espacio
-            #for a in range(len(self.mapa[0])):
-          print("🤖", end = "")#Cambiar un 1 por un ""
-        elif self.mapa[j][i] == 1:
-            #Si encuentra un numero 1 -  espacio
-            #for a in range(len(self.mapa[0])):
-          print("  ", end = "")#Cambiar un 1 por un ""
-        elif self.mapa[j][i] == 2: #3-pared
-            #for a in range(len(self.mapa)):
+        if self.mapa[j][i] == 0: # Si encuentra un numero 0 -  personaje
+          print("🤖", end = "")
+        elif self.mapa[j][i] == 1: # Si encuentra un numero 1 -  espacio
+          print("  ", end = "")
+        elif self.mapa[j][i] == 2: # Si encuentra un numero 2-  caja
+          # cada que se encuentre un 2 en el mapa, contador incrementa su valor
           contador+=1
-          print("🧰", end = "")#Cambia un 3 por un simbolo  
-        elif self.mapa[j][i] == 3: #3-pared
-            #for a in range(len(self.mapa)):
-          print("🔳", end = "")#Cambia un 3 por un simbolo
-        elif self.mapa[j][i] == 4: #3-pared
-            #for a in range(len(self.mapa)):
-          print("⛳", end = "")#Cambia un 3 por un simbolo  
-        elif self.mapa[j][i] == 5: #3-pared
-            #for a in range(len(self.mapa)):
-          print("🔰", end = "")#Cambia un 3 por un simbolo
-        elif self.mapa[j][i] == 6: #3-pared
-            #for a in range(len(self.mapa)):
-          print("🏆", end = "")#Cambia un 3 por un simbolo       
-        else:
+          print("🧰", end = "") 
+        elif self.mapa[j][i] == 3: # Si encuentra un numero 3 - pared
+          print("🔳", end = "")
+        elif self.mapa[j][i] == 4: # Si encuentra un numero 4 - meta
+          print("⛳", end = "")  
+        elif self.mapa[j][i] == 5: # Si encuentra un numero 5 - muneco_meta
+          print("🔰", end = "")
+        elif self.mapa[j][i] == 6: # Si encuentra un numero 6 -  persojae_meta
+          print("🏆", end = "")      
+        else: # Si no se cumplen las condiciones anteriores, imprime el valor de la posicion
           print(self.mapa[j][i], end=" ")
-      print()
-    print() #Imprime una linea vacia 
+      print() # Imprime una linea vacia 
+    print() # Imprime una linea vacia 
 
+    # Si contador es igual a 0; devuelve True
     if contador == 0:
       self.complet = True
-    else: 
+    else: # Si no es el caso; devuelve False
       self.complet = False
-    
-  
-  def limpiar_pantalla(self):
+
+  # Metodo limpiarPantalla, este metodo nos hace una limpieza de la pantalla/terminal
+  def limpiarPantalla(self):
     if platform.system()=='Windows':
       os.system('cls')
     else:
       os.system('clear')
 
+  # Metodo moverDerecha
   def moverDerecha(self):
     #5.- Personaje, espacio 
     if self.mapa[self.muneco_fila,self.muneco_columna]== 0 and self.mapa[self.muneco_fila,self.muneco_columna+1]==1:
@@ -179,7 +181,7 @@ class Sokoban:
       self.mapa[self.muneco_fila,self.muneco_columna+2]=6
       self.muneco_columna+=1
 
-      
+  # Metodo moverIzquierda     
   def moverIzquierda(self):
     if self.mapa[self.muneco_fila,self.muneco_columna]== 0 and  self.mapa[self.muneco_fila,self.muneco_columna-1]==1:
       self.mapa[self.muneco_fila,self.muneco_columna-1]=0
@@ -249,7 +251,7 @@ class Sokoban:
       self.mapa[self.muneco_fila,self.muneco_columna-2]=6
       self.muneco_columna-=1
 
-
+  # Metodo moverArriba
   def moverArriba(self):
     #29.- Espacio
         #Personaje 
@@ -340,7 +342,7 @@ class Sokoban:
       self.mapa[self.muneco_fila-2,self.muneco_columna]=6
       self.muneco_fila-=1     
 
-
+  # Metodo moverAbajo
   def moverAbajo(self):
     #41.- Espacio
         #Personaje 
@@ -381,7 +383,6 @@ class Sokoban:
    #46.- Personaje
         #Caja_meta
         #Meta
-      
     elif self.mapa[self.muneco_fila,self.muneco_columna]== 0 and  self.mapa[self.muneco_fila+1,self.muneco_columna]==6 and  self.mapa[self.muneco_fila+2,self.muneco_columna]==4:
       self.mapa[self.muneco_fila,self.muneco_columna]=1
       self.mapa[self.muneco_fila+1,self.muneco_columna]=5
@@ -432,23 +433,24 @@ class Sokoban:
       self.mapa[self.muneco_fila+2,self.muneco_columna]=6
       self.muneco_fila+=1
       
-    
+  # Metodo play  
   def play(self):
-    self.loadFile()
-    self.findColumnasFilas()
-    self.convertirFile()
-    self.findPosition()
-    while True:#Bucle para jugar N veces
+    self.loadFile() # Llmado a la funcion loadFile()
+    self.findColumnasFilas() # Llmado a la funcion cindColumnasFilas()
+    self.convertirFile() # Llmado a la funcion convertirFile()
+    self.findPosition() # Llmado a la funcion findPosition()
+
+    # Bucle para jugar n veces
+    while True:
       print()
       print(" ---- Nivel Actual: "+self.nivel+" ----")
       print()
       intrucciones = " d - Derecha\n i - Izquierda\n r - Arriba\n a - Abajo\n q - Salir" #Instrucciones
       print(intrucciones)
       print()
-      level=1
+
+      level = 1
       if self.complet == True:
-        level+=1
-        if level == 1:
         print("Level Complete")  # Print the level complete
         input("Press Enter to continue...")   
         nivel_nuevo = 'level1.txt'
@@ -457,25 +459,27 @@ class Sokoban:
         self.findColumnasFilas()
         self.convertirFile()
         self.findPosition()
+        level+=1
         
       self.printMap()
-      movimientos = input(" Mover a: ")#Lee el movimiento
-      if movimientos == 'd':#si es d - mover a la derecha
-        juego.moverDerecha()#mueve el muñeco  a la derecha
-        juego.limpiar_pantalla()
-      elif movimientos == 'i': #si es a - mover a la izquierda
-        juego.moverIzquierda()#mueve el muñeco  a la izquierda
-        juego.limpiar_pantalla()
-      elif movimientos == 'r': #si es r - mover a arriba
-        juego.moverArriba()#mueve el muñeco  a arriba
-        juego.limpiar_pantalla()
-      elif movimientos == 'a': #si es l - mover a abajo
-        juego.moverAbajo()#mueve el muñeco  a abajo
-        juego.limpiar_pantalla()
-      elif movimientos == "q":#si es q-salir
-        print(" Saliste del juego")#Imprmir mensaje
-        break #Rompe el ciclo while
+      movimientos = input(" Mover a: ") # Lee el movimiento
+      if movimientos == 'd': # Si es d - mover a la derecha
+        juego.moverDerecha() # Llamdo a la funcion moverDerecha()
+        juego.limpiarPantalla() # Llamdo a la funcion limpiarPantalla()
+      elif movimientos == 'i': # Si es i - mover a la izquierda
+        juego.moverIzquierda() # Llamdo a la funcion moverIzquierda()
+        juego.limpiarPantalla() # Llamdo a la funcion limpiarPantalla()
+      elif movimientos == 'r': # Si es r - mover a arriba
+        juego.moverArriba() # Llamdo a la funcion moverArriba()
+        juego.limpiarPantalla() # Llamdo a la funcion limpiarPantalla()
+      elif movimientos == 'a': # Si es a - mover a abajo
+        juego.moverAbajo() # Llamdo a la funcion moverAbajo()
+        juego.limpiarPantalla() # Llamdo a la funcion limpiarPantalla()
+      elif movimientos == "q": # Si es q-salir
+        print(" Saliste del juego") 
+        break # Rompe el ciclo while
     
-
-juego = Sokoban()#Crea un objeto para jugar
+# Creamos un objeto de la clase Sokoban()
+juego = Sokoban()
+# Llamado a la funcion play()  
 juego.play()
