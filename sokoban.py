@@ -444,6 +444,7 @@ class Sokoban:
     # Bucle para jugar n veces
     while True:
       print()
+      print("         ---- SOKOBAN ----")
       print(" ---- Nivel Actual: "+self.nivel+" ----")
       print()
       intrucciones = " d - Derecha\n i - Izquierda\n r - Arriba\n a - Abajo\n q - Salir" #Instrucciones
