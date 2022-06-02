@@ -1,5 +1,5 @@
 """
-Author: Jesus Bautista Hernandez
+Author: Jesus B
 Grupo: TI22
       #0 = muñeco - 
       #1 = espacio
